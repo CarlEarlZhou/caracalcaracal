@@ -5,6 +5,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include "game.h"
+#include "mShader.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -27,9 +29,13 @@ int main() {
     }
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
+    Game test_game(SCREEN_WIDTH, SCREEN_HEIGHT);
+    test_game.createGame("./test.in");
+
     while(!glfwWindowShouldClose(window)) {
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
+        test_game.drawBlocks();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
