@@ -31,11 +31,12 @@ int main() {
 
     Game test_game(SCREEN_WIDTH, SCREEN_HEIGHT);
     test_game.createGame("./test.in");
+    
 
     while(!glfwWindowShouldClose(window)) {
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
-        test_game.drawBlocks();
+        test_game.drawSprites();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
