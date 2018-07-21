@@ -31,13 +31,27 @@ void Game::createGame(string levelFilePath) {
     block = new Block((float)screen_width/width, (float)screen_height/height/2.5, 
                     "./img/block.png", "./block.vert", "./block.frag", width, height, (int**)blocks);
     board = new Board((float)screen_width/6, 30.0f, "./img/board.png", (float)screen_height,
-                    "./block.vert", "./board.frag");
+                    (float)screen_width, "./block.vert", "./board.frag");
+    ball = new Ball(30.0f, 30.0f, "./img/ridiculous.jpg", "./block.vert", "./ball.frag");
 }
 
 void Game::drawSprites() {
     glBindVertexArray(blockVAO);
     block->draw(projection);
     board->draw(projection);
+    ball->draw(projection);
+}
+
+void Game::processInput(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        board->move(true);
+    }
+    else if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        board->move(false);
+    }
 }
 
 unsigned int Game::createBlockVAO() {

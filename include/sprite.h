@@ -18,11 +18,18 @@ public:
         model = mat4(1.0f);
         model = scale(model, vec3(size.x, size.y, 0.0f));
         model = translate(model, vec3(0.5f, 0.5f, 0.0f));
+
+        this->size = size;
+    }
+
+    vec2 getSize() {
+        return size;
     }
     virtual void draw(mat4) = 0;
     MShader* shader;
 protected:
     unsigned int texture;
+    vec2 size;
     mat4 model;
 };
 #endif

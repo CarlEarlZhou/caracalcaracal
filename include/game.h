@@ -20,9 +20,11 @@ public:
     Game(int screen_width, int screen_height);
     void createGame(std::string levelFile);
     void drawSprites();
+    void processInput(GLFWwindow* window);
 private:
     Block* block;
     Board* board;
+    Ball* ball;
     int screen_width, screen_height;
     int width, height;
     int blocks[30][30];

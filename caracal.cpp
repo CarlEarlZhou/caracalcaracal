@@ -34,6 +34,7 @@ int main() {
     
 
     while(!glfwWindowShouldClose(window)) {
+        test_game.processInput(window);
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
         test_game.drawSprites();
