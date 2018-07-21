@@ -37,7 +37,9 @@ int main() {
         test_game.processInput(window);
         glClearColor(1.0, 1.0, 1.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
-        test_game.drawSprites();
+        if (!test_game.drawSprites()) {
+            glfwSetWindowShouldClose(window, true);
+        }
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

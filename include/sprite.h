@@ -13,13 +13,15 @@ using namespace glm;
 
 class Sprite {
 public:
-    Sprite(vec2 size) {
+    Sprite(vec2 size, float screen_width, float screen_height) {
         // move sprite's left bottom vertex to (0, 0) and scale 
         model = mat4(1.0f);
         model = scale(model, vec3(size.x, size.y, 0.0f));
         model = translate(model, vec3(0.5f, 0.5f, 0.0f));
 
         this->size = size;
+        this->screen_width = screen_width;
+        this->screen_height = screen_height;
     }
 
     vec2 getSize() {
@@ -29,6 +31,7 @@ public:
     MShader* shader;
 protected:
     unsigned int texture;
+    float screen_height, screen_width;
     vec2 size;
     mat4 model;
 };

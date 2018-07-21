@@ -29,17 +29,28 @@ void Game::createGame(string levelFilePath) {
     blockVAO = createBlockVAO();
     // create blocks
     block = new Block((float)screen_width/width, (float)screen_height/height/2.5, 
+                    (float)screen_width, (float)screen_height, 
                     "./img/block.png", "./block.vert", "./block.frag", width, height, (int**)blocks);
-    board = new Board((float)screen_width/6, 30.0f, "./img/board.png", (float)screen_height,
-                    (float)screen_width, "./block.vert", "./board.frag");
-    ball = new Ball(30.0f, 30.0f, "./img/ridiculous.jpg", "./block.vert", "./ball.frag");
+    board = new Board((float)screen_width/6, 30.0f, (float)screen_width, (float)screen_height,  
+                    "./img/board.png", "./block.vert", "./board.frag");
+    ball = new Ball(30.0f, (float)screen_width, (float)screen_height, 
+                    "./img/ridiculous.jpg", "./block.vert", "./ball.frag");
+
+    ball->setPosition(700.0f, 500.0f);
 }
 
-void Game::drawSprites() {
+bool Game::drawSprites() {
+    ball->move();
+    block->collision(ball);
+    board->collision(ball);
+    if (ball->position.y > screen_height) {
+        return false;
+    }
     glBindVertexArray(blockVAO);
     block->draw(projection);
     board->draw(projection);
     ball->draw(projection);
+    return true;
 }
 
 void Game::processInput(GLFWwindow* window) {
