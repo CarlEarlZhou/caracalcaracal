@@ -3,3 +3,8 @@ img
 *.o
 test.*
 caracal
+Debug
+glm
+.vs
+*.sln
+*.vcxproj*

@@ -12,7 +12,7 @@ public:
         createTexture(texture_path);
         shader = new MShader(vs_path, fs_path);
         this->size = size;
-        speed = vec2(5.0f, -3.0f);
+        speed = vec2(0.1f, -0.01f);
         position = vec2(size/2, size/2);
     }
 
@@ -216,9 +216,11 @@ public:
                 // cout << ball->speed.x << " " << ball->speed.y << "\n";
                 // cout << "\n\n\n";
                 ball->setPosition(ball->position.x, screen_height - 30 - ball->getSize().x);
+				return true;
             }
             
         }
+		return false;
     }
 private:
     int width;
